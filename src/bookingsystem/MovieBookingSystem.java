@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class MovieBookingSystem extends BookingSystem {
   /**
-   * Array of time slots.
+   * Hash map of time slots.
    */
   private HashMap<String, TimeSlot> showTimes;
   /**
@@ -42,8 +42,7 @@ public class MovieBookingSystem extends BookingSystem {
 
   @Override
   public final boolean checkAvailability(final String showTime) {
-    TimeSlot current;
-    current = showTimes.get(showTime);
+    TimeSlot current = showTimes.get(showTime);
     if (current.getAvailableTickets() > 0) {
       System.out.println(current.getAvailableTickets() + " tickets available.");
       return true;
@@ -54,8 +53,7 @@ public class MovieBookingSystem extends BookingSystem {
 
   @Override
   public final boolean bookTicket(final String showTime, final int tickets) {
-    TimeSlot current;
-    current = showTimes.get(showTime);
+    TimeSlot current = showTimes.get(showTime);
     if (current.getAvailableTickets() < tickets) {
       System.out.println("Not enough tickets available for this showtime.");
       return false;
@@ -70,8 +68,7 @@ public class MovieBookingSystem extends BookingSystem {
   @Override
   public final boolean cancelReservation(final String showTime,
       final int tickets) {
-    TimeSlot current;
-    current = showTimes.get(showTime);
+    TimeSlot current = showTimes.get(showTime);
     if (current.getBookedTicket() < tickets) {
       System.out.println(
           "Invalid operation (Attempt to cancel more tickets than booked)");
