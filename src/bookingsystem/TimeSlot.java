@@ -25,13 +25,6 @@ public class TimeSlot {
     setTicketCount(ticket);
   }
 
-  /**
-   * Ticket count.
-   * @return ticketCount
-   */
-  public int getTicketCount() {
-    return ticketCount;
-  }
 
   /**
    * Setter for ticketCount.
@@ -78,8 +71,7 @@ public class TimeSlot {
    * @return availableTicket
    */
   public int getAvailableTickets() {
-     int availableTicket;
-     availableTicket = ticketCount - bookedTicket;
+     int availableTicket = ticketCount - bookedTicket;
      return availableTicket;
   }
 }

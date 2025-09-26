@@ -19,7 +19,10 @@ public class MovieBookingSystem extends BookingSystem {
    * Time slot 3.
    */
   private TimeSlot time3;
-
+  /**
+   * Placeholder for the current time slot.
+   */
+  private TimeSlot current;
   /**
    * Initial ticket count.
    */
@@ -40,45 +43,75 @@ public class MovieBookingSystem extends BookingSystem {
 
   }
 
+  /**
+   * Checks if input is a valid time slot.
+   * @param showTime
+   * @return TimeSlot
+   */
+  public TimeSlot checkTimeSlot(final String showTime) {
+    TimeSlot result = showTimes.get(showTime);
+    if (result == null) {
+      throw new RuntimeException("Invalid time slot!");
+    }
+    return result;
+
+  }
+
   @Override
   public final boolean checkAvailability(final String showTime) {
-    TimeSlot current = showTimes.get(showTime);
-    if (current.getAvailableTickets() > 0) {
-      System.out.println(current.getAvailableTickets() + " tickets available.");
-      return true;
+    try {
+      current = checkTimeSlot(showTime);
+      if (current.getAvailableTickets() > 0) {
+        System.out
+            .println(current.getAvailableTickets() + " tickets available.");
+        return true;
+      }
+      System.out.println("Not enough tickets available for this showtime.");
+      return false;
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      return false;
     }
-    System.out.println("Not enough tickets available for this showtime.");
-    return false;
   }
 
   @Override
   public final boolean bookTicket(final String showTime, final int tickets) {
-    TimeSlot current = showTimes.get(showTime);
-    if (current.getAvailableTickets() < tickets) {
-      System.out.println("Not enough tickets available for this showtime.");
+    try {
+      current = checkTimeSlot(showTime);
+      if (current.getAvailableTickets() < tickets) {
+        System.out.println("Not enough tickets available for this showtime.");
+        return false;
+      }
+
+      current.setBookedTicket(tickets);
+      System.out
+          .println(tickets + " tickets successfully booked for " + showTime);
+      return true;
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
       return false;
     }
-
-    current.setBookedTicket(tickets);
-    System.out
-        .println(tickets + " tickets successfully booked for " + showTime);
-    return true;
   }
 
   @Override
   public final boolean cancelReservation(final String showTime,
       final int tickets) {
-    TimeSlot current = showTimes.get(showTime);
-    if (current.getBookedTicket() < tickets) {
-      System.out.println(
-          "Invalid operation (Attempt to cancel more tickets than booked)");
+    try {
+      current = checkTimeSlot(showTime);
+      if (current.getBookedTicket() < tickets) {
+        System.out.println(
+            "Invalid operation (Attempt to cancel more tickets than booked)");
+        return false;
+      }
+
+      current.setBookedTicket(current.getBookedTicket() - tickets);
+      System.out
+          .println(tickets + " tickets successfully canceled for " + showTime);
+      return true;
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
       return false;
     }
-
-    current.setBookedTicket(current.getBookedTicket() - tickets);
-    System.out
-        .println(tickets + " tickets successfully canceled for " + showTime);
-    return true;
 
   }
 
