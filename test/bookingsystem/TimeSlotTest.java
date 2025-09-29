@@ -1,4 +1,6 @@
 package bookingsystem;
+//CODE REVIEWED BY: KYLE ANGEL N. RAMIREZ
+//ALL REQUIRED METHODS ARE PRESENT. NO CHECKSTYLE VIOLATIONS.
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,4 +1,6 @@
 package bookingsystem;
+//CODE REVIEWED BY: KYLE ANGEL N. RAMIREZ
+//ALL REQUIRED METHODS ARE PRESENT. NO CHECKSTYLE VIOLATIONS.
 
 public final class Main {
   private Main() {
@@ -22,19 +24,19 @@ public final class Main {
    */
   static final int TICKETCOUNT100 = 100;
 
-//  /**
-//   * Main class.
-//   * @param args
-//   */
-//  public static void main(final String[] args) {
-//    MovieBookingSystem eigakan = new MovieBookingSystem();
-//
-//    eigakan.checkAvailability("11:00 AM");
-//    eigakan.bookTicket("10:00 AM", TICKETCOUNT5);
-//    eigakan.bookTicket("10:00 AM", TICKETCOUNT100);
-//    eigakan.cancelReservation("10:00 AM", TICKETCOUNT3);
-//    eigakan.bookTicket("10:00 AM", TICKETCOUNT2);
-//    eigakan.cancelReservation("10:00 AM", TICKETCOUNT5);
-//
-//  }
+  /**
+   * Main class.
+   * @param args
+   */
+  public static void main(final String[] args) {
+    MovieBookingSystem eigakan = new MovieBookingSystem();
+
+    eigakan.checkAvailability("11:00 AM");
+    eigakan.bookTicket("10:00 AM", TICKETCOUNT5);
+    eigakan.bookTicket("10:00 AM", TICKETCOUNT100);
+    eigakan.cancelReservation("10:00 AM", TICKETCOUNT3);
+    eigakan.bookTicket("10:00 AM", TICKETCOUNT2);
+    eigakan.cancelReservation("10:00 AM", TICKETCOUNT5);
+
+  }
 }
