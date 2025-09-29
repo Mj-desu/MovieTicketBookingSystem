@@ -1,6 +1,5 @@
 package bookingsystem;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
@@ -42,6 +41,16 @@ class MovieBookingSystemTest {
   }
 
   @Test
+  void testShouldDisplayRightMessageIfTimeSlotInvalid() {
+    String expectedOutput = "Invalid time slot!";
+
+    eigakan.checkAvailability("11:00 AM");
+
+    assertEquals(expectedOutput, outContent.toString().trim());
+
+  }
+
+  @Test
   void testShouldDisplayRightMessageIfNotAvailable() {
     final int tickets = 20;
     String expectedOutput = "20 tickets successfully booked for 10:00 AM\r\n"
@@ -75,6 +84,17 @@ class MovieBookingSystemTest {
   }
 
   @Test
+  void testShouldDisplayRightMessageIfInvalidBookingTimeSlot() {
+    final int tickets = 20;
+    eigakan.bookTicket("11:00 AM", tickets);
+
+    String expectedOutput = "Invalid time slot!";
+
+    assertEquals(expectedOutput, outContent.toString().trim());
+
+  }
+
+  @Test
   void testShouldDisplayRightMessageIfTicketCancelled() {
     final int tickets = 10;
     final int ticketsToBeCancelled = 5;
@@ -94,6 +114,17 @@ class MovieBookingSystemTest {
     String expectedOutput = "Invalid operation (Attempt to cancel"
         + " more tickets than booked)";
     eigakan.cancelReservation("10:00 AM", ticketsToBeCancelled);
+
+    assertEquals(expectedOutput, outContent.toString().trim());
+
+  }
+
+  @Test
+  void testShouldDisplayRightMessageIfInvalidCancellingTimeSlot() {
+    final int tickets = 20;
+    eigakan.cancelReservation("11:00 AM", tickets);
+
+    String expectedOutput = "Invalid time slot!";
 
     assertEquals(expectedOutput, outContent.toString().trim());
 

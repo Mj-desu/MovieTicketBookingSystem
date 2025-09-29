@@ -32,4 +32,9 @@ class TimeSlotTest {
     assertEquals(expectedOutput, actualOutput);
   }
 
+  @Test
+  void testShouldReturnTimeSlotValue() {
+    assertEquals("10:00 AM", time1.getTimeSlot());
+  }
+
 }
